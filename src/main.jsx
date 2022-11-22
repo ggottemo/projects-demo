@@ -12,17 +12,21 @@ import Navbar from "./components/Navbar.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements([
+        <Route path="/" element={<Navbar />} >
+
         <Route path="/projects" element={<ProjectsPage/>} />,
-        <Route path="/" element={<App />} />
+        </Route>
     ])
 
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <Navbar>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} >
+      <Navbar />
 
-      </Navbar>
+        </RouterProvider>
+
+
   </React.StrictMode>
 )

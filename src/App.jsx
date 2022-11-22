@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
         // Link to the projects page
-<Link to="/projects">Projects</Link>
+
     </div>
   )
 }
