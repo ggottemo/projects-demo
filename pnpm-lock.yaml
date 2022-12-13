@@ -9,6 +9,7 @@ specifiers:
   graphql: ^16.6.0
   localforage: ^1.10.0
   match-sorter: ^6.3.1
+  prettier: ^2.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-is: ^18.2.0
@@ -23,6 +24,7 @@ dependencies:
   graphql: 16.6.0
   localforage: 1.10.0
   match-sorter: 6.3.1
+  prettier: 2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-is: 18.2.0
@@ -996,6 +998,12 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: false
 
   /prop-types/15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
