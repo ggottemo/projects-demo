@@ -1,0 +1,55 @@
+{
+    viewer {
+        projectsV2(last: 5) {
+            nodes {
+                id
+                items(last: 5) {
+                    nodes {
+                        id
+                        fieldValues(first: 10) {
+                            nodes {
+                                ... on ProjectV2ItemFieldValueCommon {
+                                    id
+                                    __typename
+                                    createdAt
+                                }
+                                ... on ProjectV2ItemFieldLabelValue {
+                                    labels(first: 10) {
+                                        nodes {
+                                            name
+
+                                        }
+                                    }
+                                }
+                                ... on ProjectV2ItemFieldSingleSelectValue {
+                                    name
+                                    __typename
+                                    optionId
+                                    field {
+                                        ... on ProjectV2FieldCommon {
+                                            name
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        }
+                        content {
+                            ... on Issue {
+                                id
+                                body
+                                title
+                                url
+                                closed
+                                createdAt
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
