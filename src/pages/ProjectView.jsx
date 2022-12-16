@@ -23,52 +23,52 @@ const getProjectIssues = gql`
       ... on ProjectV2 {
         url
         id
-          items(last: 5) {
+        items(last: 5) {
+          nodes {
+            id
+            fieldValues(first: 10) {
               nodes {
+                ... on ProjectV2ItemFieldValueCommon {
                   id
-                  fieldValues(first: 10) {
-                      nodes {
-                          ... on ProjectV2ItemFieldValueCommon {
-                              id
-                              __typename
-                              createdAt
-                          }
-                          ... on ProjectV2ItemFieldLabelValue {
-                              labels(first: 10) {
-                                  nodes {
-                                      name
-
-                                  }
-                              }
-                          }
-                          ... on ProjectV2ItemFieldSingleSelectValue {
-                              name
-                              __typename
-                              optionId
-                              field {
-                                  ... on ProjectV2FieldCommon {
-                                      name
-                                  }
-                              }
-
-                          }
-
-                      }
+                  __typename
+                  createdAt
+                }
+                ... on ProjectV2ItemFieldLabelValue {
+                  labels(first: 10) {
+                    nodes {
+                      name
+                    }
                   }
-                  content {
-                      ... on Issue {
-                          id
-                          body
-                          title
-                          url
-                          closed
-                          createdAt
-
-                      }
-
+                }
+                ... on ProjectV2ItemFieldSingleSelectValue {
+                  name
+                  __typename
+                  optionId
+                  field {
+                    ... on ProjectV2SingleSelectField {
+                      name
+                      id
+                    }
                   }
+                }
               }
+            }
+            content {
+              ... on Issue {
+                id
+                body
+                title
+                url
+                closed
+                createdAt
+                databaseId
+                author {
+                  login
+                }
+              }
+            }
           }
+        }
       }
     }
   }
@@ -97,7 +97,26 @@ const ProjectView = () => {
       <h4>Number of Issues: {data.node.items.nodes.length}</h4>
       <ul>
         {data.node.items.nodes.map((issue) => (
-         <IssueCard key={issue.id} date={issue.content.createdAt} title={issue.content.title} url={issue.content.url} />
+          <IssueCard
+            key={issue.id}
+            id={issue.content.databaseId}
+            author={issue.content.author.login}
+            date={issue.content.createdAt}
+            title={issue.content.title}
+            url={issue.content.url}
+            status={issue.fieldValues.nodes.map((node) =>
+              node.__typename === "ProjectV2ItemFieldSingleSelectValue" &&
+              node.field.id === "PVTSSF_lAHOAPbz6M4AFgdYzgDLHRk"
+                ? node.name
+                : ""
+            )}
+            size={issue.fieldValues.nodes.map((node) =>
+              node.__typename === "ProjectV2ItemFieldSingleSelectValue" &&
+              node.field.id === "PVTSSF_lAHOAPbz6M4AFgdYzgDLHTU"
+                ? node.name
+                : ""
+            )}
+          />
         ))}
       </ul>
     </div>

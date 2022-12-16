@@ -19,7 +19,6 @@
     "graphql": "^16.6.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
-    "prettier": "^2.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
@@ -31,6 +30,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
+    "prettier": "^2.8.1",
     "vite": "^3.2.3"
   }
 }
