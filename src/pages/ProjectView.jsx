@@ -26,6 +26,7 @@ const getProjectIssues = gql`
         items(last: 5) {
           nodes {
             id
+            databaseId
             fieldValues(first: 10) {
               nodes {
                 ... on ProjectV2ItemFieldValueCommon {
@@ -44,6 +45,8 @@ const getProjectIssues = gql`
                   name
                   __typename
                   optionId
+                  id
+                  databaseId
                   field {
                     ... on ProjectV2SingleSelectField {
                       name
@@ -99,7 +102,7 @@ const ProjectView = () => {
         {data.node.items.nodes.map((issue) => (
           <IssueCard
             key={issue.id}
-            id={issue.content.databaseId}
+            id={issue.id}
             author={issue.content.author.login}
             date={issue.content.createdAt}
             title={issue.content.title}
@@ -107,7 +110,7 @@ const ProjectView = () => {
             status={issue.fieldValues.nodes.map((node) =>
               node.__typename === "ProjectV2ItemFieldSingleSelectValue" &&
               node.field.id === "PVTSSF_lAHOAPbz6M4AFgdYzgDLHRk"
-                ? node.name
+                ? { name: node.name, id: node.optionId }
                 : ""
             )}
             size={issue.fieldValues.nodes.map((node) =>
