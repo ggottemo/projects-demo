@@ -1,8 +1,13 @@
+/** @jsxImportSource @emotion/react */
+
+import react from "react";
 import { gql, useQuery } from "@apollo/client";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import IssueCard from "../components/IssueCard.jsx";
+import { css } from "@emotion/react";
+
 
 const getProjectData = gql`
   query GetProjectData($projectID: ID!) {
@@ -95,10 +100,11 @@ const ProjectView = () => {
     );
   console.log(data.node);
   return (
-    <div>
+    <div css={css`
+    margin: 0 auto`}>
       <h1>Project: {data.node.name}</h1>
       <h4>Number of Issues: {data.node.items.nodes.length}</h4>
-      <ul>
+      <ul id="issueList" >
         {data.node.items.nodes.map((issue) => (
           <IssueCard
             key={issue.id}

@@ -5,6 +5,7 @@
                 id
                 items(last: 5) {
                     nodes {
+                        databaseId
                         id
                         fieldValues(first: 10) {
                             nodes {
@@ -12,6 +13,7 @@
                                     id
                                     __typename
                                     createdAt
+                                    databaseId
                                 }
                                 ... on ProjectV2ItemFieldLabelValue {
                                     labels(first: 10) {

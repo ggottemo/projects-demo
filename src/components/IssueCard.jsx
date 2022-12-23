@@ -70,7 +70,7 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
   return (
     <Card
       css={css`
-        margin: 2em auto;
+       
         width: 400px;
       `}
     >
@@ -88,7 +88,7 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
         )}
         {data && (
           <Alert severity="success" onClose={() => {}}>
-            {" "}
+
             Status Changed
           </Alert>
         )}
@@ -109,7 +109,7 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
         <Typography>Size: {size}</Typography>
         <Typography
           css={css`
-            font-family: Roboto;
+            font-family: Roboto,serif;
           `}
         >
           Opened by: {author}
