@@ -8,7 +8,6 @@ import { useState } from "react";
 import IssueCard from "../components/IssueCard.jsx";
 import { css } from "@emotion/react";
 
-
 const getProjectData = gql`
   query GetProjectData($projectID: ID!) {
     node(id: $projectID) {
@@ -100,11 +99,10 @@ const ProjectView = () => {
     );
   console.log(data.node);
   return (
-    <div css={css`
-    margin: 0 auto`}>
+    <div>
       <h1>Project: {data.node.name}</h1>
       <h4>Number of Issues: {data.node.items.nodes.length}</h4>
-      <ul id="issueList" >
+      <ul id="issueList">
         {data.node.items.nodes.map((issue) => (
           <IssueCard
             key={issue.id}

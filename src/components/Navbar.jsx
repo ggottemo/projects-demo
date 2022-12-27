@@ -22,7 +22,6 @@ const Container = styled.div`
   text-align: center;
   position: absolute;
   top: 15px;
-  width: 1000px;
 `;
 
 const Spacer = styled.span`

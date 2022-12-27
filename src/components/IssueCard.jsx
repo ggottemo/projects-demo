@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { css } from "@emotion/react";
 import { gql, useMutation } from "@apollo/client";
-import {useState} from "react";
+import { useState } from "react";
 
 const OPTIONS = [
   {
@@ -42,7 +42,9 @@ const OPTIONS = [
 ];
 
 const IssueCard = ({ title, url, date, status, size, author, id }) => {
-    const [statusState, setStatusState] = useState(status.map((stat) => stat.name !== "" ? stat.name : ""));
+  const [statusState, setStatusState] = useState(
+    status.map((stat) => (stat.name !== "" ? stat.name : ""))
+  );
   const UPDATE_STATUS = gql`
     mutation {
       updateProjectV2ItemFieldValue(
@@ -50,7 +52,9 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
           projectId: "PVT_kwHOAPbz6M4AFgdY"
           fieldId: "PVTSSF_lAHOAPbz6M4AFgdYzgDLHRk"
           itemId: "${id}"
-          value: { singleSelectOptionId: "${ OPTIONS[Math.floor(Math.random() * OPTIONS.length)].id }" }
+          value: { singleSelectOptionId: "${
+            OPTIONS[Math.floor(Math.random() * OPTIONS.length)].id
+          }" }
         }
       ) {
         projectV2Item {
@@ -70,8 +74,7 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
   return (
     <Card
       css={css`
-       
-        width: 400px;
+        width: 380px;
       `}
     >
       <CardContent>
@@ -88,7 +91,6 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
         )}
         {data && (
           <Alert severity="success" onClose={() => {}}>
-
             Status Changed
           </Alert>
         )}
@@ -109,7 +111,7 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
         <Typography>Size: {size}</Typography>
         <Typography
           css={css`
-            font-family: Roboto,serif;
+            font-family: Roboto, serif;
           `}
         >
           Opened by: {author}
@@ -124,10 +126,16 @@ const IssueCard = ({ title, url, date, status, size, author, id }) => {
           onClick={(e) => {
             mutateFunction()
               .then((value) => {
-                console.log( value.data.updateProjectV2ItemFieldValue.projectV2Item.fieldValueByName.name)
+                console.log(
+                  value.data.updateProjectV2ItemFieldValue.projectV2Item
+                    .fieldValueByName.name
+                );
 
-                if(value) {
-                    setStatusState(value.data.updateProjectV2ItemFieldValue.projectV2Item.fieldValueByName.name)
+                if (value) {
+                  setStatusState(
+                    value.data.updateProjectV2ItemFieldValue.projectV2Item
+                      .fieldValueByName.name
+                  );
                 }
                 reset();
                 console.log("Status Changed");
